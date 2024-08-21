@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'make'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh './test_program'
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs() // Clean workspace after build
+        }
+    }
+}
+
